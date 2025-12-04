@@ -1,22 +1,20 @@
-import { generateAccessToken, generateRefreshToken } from './generateTokens.js';
+import { generateAccessToken, generateRefreshToken } from "./generateTokens.js";
 
-const sendCookieResponse = (res, userId) => {
+export default function sendCookieResponse(res, userId) {
   const accessToken = generateAccessToken(userId);
   const refreshToken = generateRefreshToken(userId);
 
-  res.cookie('accessToken', accessToken, {
+  res.cookie("accessToken", accessToken, {
     httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-    sameSite: 'Strict',
-    maxAge: 15 * 60 * 1000, // 15 minutes
+    secure: true,
+    sameSite: "none",
+    maxAge: 15 * 60 * 1000
   });
 
-  res.cookie('refreshToken', refreshToken, {
+  res.cookie("refreshToken", refreshToken, {
     httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-    sameSite: 'Strict',
-    maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+    secure: true,
+    sameSite: "none",
+    maxAge: 7 * 24 * 60 * 60 * 1000
   });
-};
-
-export default sendCookieResponse;
+}

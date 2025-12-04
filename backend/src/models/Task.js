@@ -8,8 +8,19 @@ const taskSchema = mongoose.Schema(
     },
     completed: {
       type: Boolean,
-      required: true,
       default: false,
+    },
+    dueDate: {
+      type: Date,
+      required: false,
+    },
+    priority: {
+      type: String,
+      required: false,
+    },
+    description: {
+      type: String,
+      required: false,
     },
     projectId: {
       type: mongoose.Schema.Types.ObjectId,

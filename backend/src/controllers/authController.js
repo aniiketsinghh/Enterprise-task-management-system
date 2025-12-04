@@ -164,4 +164,23 @@ const logout = (req, res) => {
   res.status(200).json({ message: 'Logged out successfully' });
 };
 
-export { signup, login, googleLoginURL, googleCallback, refreshAccessToken, logout };
+// @desc    Get logged-in user profile
+// @route   GET /api/auth/me
+// @access  Private
+const getMe = asyncHandler(async (req, res) => {
+  // req.user._id is coming from your protect middleware (JWT verified)
+  const user = await User.findById(req.user._id).select('-password');
+
+  if (!user) {
+    res.status(404);
+    throw new Error("User not found");
+  }
+
+  res.status(200).json({
+    success: true,
+    user,
+  });
+});
+
+
+export { signup, login, googleLoginURL, googleCallback, refreshAccessToken, logout , getMe};
