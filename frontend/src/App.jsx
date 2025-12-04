@@ -14,36 +14,36 @@ function App() {
   return (
     <AuthProvider>
       
-        <div className="min-h-screen bg-gray-50">
+        <div className="min-h-screen bg-green-400">
           <Navbar />
           <div className="flex h-[calc(100vh-4rem)]">
             <Sidebar />
-            <main className="flex-1 p-6 overflow-y-auto">
+            <main className="flex-1  overflow-y-auto">
               <Routes>
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<Signup />} />
                 <Route
                   path="/"
                   element={
-                    <ProtectedRoute>
+                    // <ProtectedRoute>
                       <Dashboard />
-                    </ProtectedRoute>
+                    // </ProtectedRoute>
                   }
                 />
                 <Route
                   path="/tasks"
                   element={
-                    <ProtectedRoute>
+                    // <ProtectedRoute>
                       <Tasks />
-                    </ProtectedRoute>
+                    // </ProtectedRoute>
                   }
                 />
                 <Route
                   path="/projects"
                   element={
-                    <ProtectedRoute>
+                    // <ProtectedRoute>
                       <Projects />
-                    </ProtectedRoute>
+                    // </ProtectedRoute>
                   }
                 />
                 <Route path="*" element={<Navigate to="/" replace />} />
